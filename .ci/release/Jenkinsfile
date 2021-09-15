@@ -12,7 +12,6 @@ pipeline {
     CAMBPM_LOGGER_LOG_LEVEL = 'DEBUG'
   }
   parameters {
-    string name: 'RELEASE_BRANCH', defaultValue: 'release-ci', description: 'The git repository branch to check out.'
     string name: 'RELEASE_VERSION', defaultValue: '7.16.99', description: 'The version to be released.'
     string name: 'MAJOR_VERSION', defaultValue: '7.16', description: 'The current major version of the project.'
     string name: 'NEXT_DEVELOPMENT_VERSION', defaultValue: '7.16.0-SNAPSHOT', description: 'The next development version to set.'
@@ -71,7 +70,7 @@ pipeline {
         // build with maven
         cambpmGitCheckout([branch: RELEASE_VERSION, credentialsId: 'github-cambpm-ci-pipeline-app'])
         cambpmRunMaven(".",
-                "-DSKIP_DEPLOY=${!DEPLOY} -DBRANCH=${RELEASE_BRANCH} -DSKIP_TESTS=${SKIP_TESTS} -DPUSH_REMOTE=${PUST_TO_REMOTE} -DMAJOR_VERSION=${MAJOR_VERSION} -DRELEASE_VERSION=${RELEASE_VERSION} source:jar source:test-jar javadoc:jar deploy -Pdistro,distro-ce,distro-wildfly,distro-webjar,release-community -Dmaven.javadoc.failOnError=false -Dadditionalparam=-Xdoclint:none -DskipTests=true -Dskip.camunda.release=false -DaltStagingDirectory=${WORKSPACE}/staging -DskipRemoteStaging=true",
+                "-DSKIP_DEPLOY=${!DEPLOY} -DBRANCH=${env.BRANCH_NAME} -DSKIP_TESTS=${SKIP_TESTS} -DPUSH_REMOTE=${PUST_TO_REMOTE} -DMAJOR_VERSION=${MAJOR_VERSION} -DRELEASE_VERSION=${RELEASE_VERSION} source:jar source:test-jar javadoc:jar deploy -Pdistro,distro-ce,distro-wildfly,distro-webjar,release-community -Dmaven.javadoc.failOnError=false -Dadditionalparam=-Xdoclint:none -DskipTests=true -Dskip.camunda.release=false -DaltStagingDirectory=${WORKSPACE}/staging -DskipRemoteStaging=true",
                 withCatch: false,
                 withNpm: true,
                 // we use JDK 11 to build the artifacts, as it is required by the Quarkus extension
@@ -84,7 +83,7 @@ pipeline {
             if (DEPLOY_ARTIFACTS) {
               echo "deploy to nexus"
 //              cambpmRunMaven(".",
-//                      "-DSKIP_DEPLOY=${!DEPLOY} -DBRANCH=${RELEASE_BRANCH} -DSKIP_TESTS=${SKIP_TESTS} -DPUSH_REMOTE=${PUST_TO_REMOTE} -DMAJOR_VERSION=${MAJOR_VERSION} -DRELEASE_VERSION=${RELEASE_VERSION} org.sonatype.plugins:nexus-staging-maven-plugin:deploy-staged -DaltStagingDirectory=${WORKSPACE}/staging -DskipStaging=true -",
+//                      "-DSKIP_DEPLOY=${!DEPLOY} -DBRANCH=${env.BRANCH_NAME} -DSKIP_TESTS=${SKIP_TESTS} -DPUSH_REMOTE=${PUST_TO_REMOTE} -DMAJOR_VERSION=${MAJOR_VERSION} -DRELEASE_VERSION=${RELEASE_VERSION} org.sonatype.plugins:nexus-staging-maven-plugin:deploy-staged -DaltStagingDirectory=${WORKSPACE}/staging -DskipStaging=true -",
 //                      withCatch: false,
 //                      withNpm: true)
             }
