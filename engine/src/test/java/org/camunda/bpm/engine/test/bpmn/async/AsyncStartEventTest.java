@@ -149,4 +149,21 @@ public class AsyncStartEventTest extends PluggableProcessEngineTest {
             .transition("StartEvent_2")
         .done());
   }
+
+  @Deployment
+  @Test
+  public void shouldRunAfterMessageStartInEventSubprocess() {
+    String processInstanceId = runtimeService.startProcessInstanceByKey("process").getId();
+
+    runtimeService.createMessageCorrelation("start_sub")
+      .processInstanceId(processInstanceId)
+      .correlate();
+
+    testRule.executeAvailableJobs();
+
+    Task task = taskService.createTaskQuery().singleResult();
+
+    assertEquals(0, runtimeService.createExecutionQuery().activityId("StartEvent_1").count());
+    assertNotNull("The user task should have been reached", task);
+  }
 }
