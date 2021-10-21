@@ -50,4 +50,14 @@ public class MapValueProvider implements ParameterValueProvider {
     this.providerMap = providerMap;
   }
 
+  @Override
+  public boolean isEvaluationUnsafe() {
+    for (Entry<ParameterValueProvider, ParameterValueProvider> entry : providerMap.entrySet()) {
+      if(entry.getKey().isEvaluationUnsafe() || entry.getValue().isEvaluationUnsafe()){
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

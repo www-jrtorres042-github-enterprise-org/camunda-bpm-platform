@@ -1,3 +1,9 @@
+package org.camunda.bpm.engine.impl.core.variable.mapping.value;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+
 /*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
@@ -14,29 +20,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.engine.impl.core.variable.mapping.value;
+public class ParameterValueProviderTest {
 
-import org.camunda.bpm.engine.delegate.VariableScope;
-
-/**
- *
- * @author Daniel Meyer
- *
- */
-public interface ParameterValueProvider {
-
-  /**
-   * @param variableScope the scope in which the value is to be resolved.
-   * @return the value
-   */
-  Object getValue(VariableScope variableScope);
-
-  /**
-  * @return true if getting the value from this value provider could have side effects. Getting the value might still
-   * throw exceptions even if this method returns false.
-   */
-  default boolean isEvaluationUnsafe(){
-    return true;
+  @Test
+  public void shouldBeUnsafeByDefault() {
+    assertTrue(((ParameterValueProvider) variableScope -> null).isEvaluationUnsafe());
   }
-
 }

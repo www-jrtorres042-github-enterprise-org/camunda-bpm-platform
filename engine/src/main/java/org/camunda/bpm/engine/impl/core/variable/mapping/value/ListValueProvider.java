@@ -49,4 +49,9 @@ public class ListValueProvider implements ParameterValueProvider {
     this.providerList = providerList;
   }
 
+  @Override
+  public boolean isEvaluationUnsafe() {
+    return this.providerList.stream().anyMatch(ParameterValueProvider::isEvaluationUnsafe);
+  }
+
 }
