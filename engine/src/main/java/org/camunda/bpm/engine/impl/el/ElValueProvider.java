@@ -54,7 +54,7 @@ public class ElValueProvider implements ParameterValueProvider, Comparable<ElVal
   }
 
   @Override
-  public boolean isEvaluationUnsafe() {
-    return !getExpression().isLiteralText();
+  public boolean isLiteralValue() {
+    return getExpression().isLiteralText();
   }
 }

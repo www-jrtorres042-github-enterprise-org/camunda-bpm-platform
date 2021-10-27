@@ -54,8 +54,8 @@ public class DefaultCallableElementTenantIdProvider implements ParameterValuePro
   }
 
   @Override
-  public boolean isEvaluationUnsafe() {
-    return false;
+  public boolean isLiteralValue() {
+    return true;
   }
 
 }

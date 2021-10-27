@@ -32,11 +32,10 @@ public interface ParameterValueProvider {
   Object getValue(VariableScope variableScope);
 
   /**
-  * @return true if getting the value from this value provider could have side effects. Getting the value might still
-   * throw exceptions even if this method returns false.
+  * @return true if the value provided is literal and does not rely on any variables or
+   * expression evaluation that could run code. If the value is literal, it can be safely obtained without
+   * triggering any side effects.
    */
-  default boolean isEvaluationUnsafe(){
-    return true;
-  }
+  boolean isLiteralValue();
 
 }

@@ -50,8 +50,8 @@ public class ListValueProvider implements ParameterValueProvider {
   }
 
   @Override
-  public boolean isEvaluationUnsafe() {
-    return this.providerList.stream().anyMatch(ParameterValueProvider::isEvaluationUnsafe);
+  public boolean isLiteralValue() {
+    return false;
   }
 
 }

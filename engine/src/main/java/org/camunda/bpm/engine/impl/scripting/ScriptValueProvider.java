@@ -53,6 +53,11 @@ public class ScriptValueProvider implements ParameterValueProvider {
     return invocation.getInvocationResult();
   }
 
+  @Override
+  public boolean isLiteralValue() {
+    return false;
+  }
+
   public ExecutableScript getScript() {
     return script;
   }

@@ -164,10 +164,10 @@ public class BaseCallableElement {
    * potential side effects to determine the process or case definition that is to be called.
    */
   public boolean hasDynamicReferences() {
-    return getTenantIdProvider().isEvaluationUnsafe()
-      || getDefinitionKeyValueProvider().isEvaluationUnsafe()
-      || getVersionValueProvider().isEvaluationUnsafe()
-      || getVersionTagValueProvider().isEvaluationUnsafe();
+    return !getTenantIdProvider().isLiteralValue()
+      || !getDefinitionKeyValueProvider().isLiteralValue()
+      || !getVersionValueProvider().isLiteralValue()
+      || !getVersionTagValueProvider().isLiteralValue();
   }
 
 

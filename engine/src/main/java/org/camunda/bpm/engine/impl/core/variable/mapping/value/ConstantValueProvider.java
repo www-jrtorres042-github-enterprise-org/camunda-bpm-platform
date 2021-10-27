@@ -41,8 +41,8 @@ public class ConstantValueProvider implements ParameterValueProvider {
   }
 
   @Override
-  public boolean isEvaluationUnsafe() {
-    return false;
+  public boolean isLiteralValue() {
+    return true;
   }
 
 }
