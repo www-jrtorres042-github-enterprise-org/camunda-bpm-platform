@@ -50,8 +50,12 @@ public class MapValueProvider implements ParameterValueProvider {
     this.providerMap = providerMap;
   }
 
+  /**
+   * @return this method currently always returns false, but that might change in the future.
+   */
   @Override
   public boolean isLiteralValue() {
+    // This type of ValueProvider is not used in Call Activities. If this method is required, please implement it.
     return false;
   }
 
