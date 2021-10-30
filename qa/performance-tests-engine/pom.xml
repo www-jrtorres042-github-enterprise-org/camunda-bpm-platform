@@ -132,7 +132,7 @@
 
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>database-test-drop-schema</id>
@@ -203,7 +203,7 @@
 
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>database-test-drop-schema</id>
@@ -271,7 +271,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>database-test-drop-schema</id>
@@ -322,7 +322,7 @@
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>generate load</id>
@@ -390,7 +390,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>database-test-drop-schema</id>
@@ -458,7 +458,7 @@
 
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
+            <version>3.0.0</version>
             <executions>
               <execution>
                 <id>generate-report</id>
